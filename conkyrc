@@ -1,7 +1,6 @@
 conky.config = {
 
--- Modified by Autocrosser1
--- May 19,2019
+-- Modified by rehaell
 -- Conky settings #
 	background = true,
 	update_interval = 1,
@@ -36,9 +35,6 @@ conky.config = {
 	alignment = 'top_right',
 	gap_x = 0,
 	gap_y = 25,
-
-	
-	
 
 -- Graphics settings #
 	draw_shades = false,
