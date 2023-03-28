@@ -1,0 +1,128 @@
+conky.config = {
+
+-- Modified by Autocrosser1
+-- May 19,2019
+-- Conky settings #
+	background = true,
+	update_interval = 1,
+	double_buffer = true,
+	no_buffers = true,
+
+-- number of cpu samples to average
+-- set to 1 to disable averaging
+	cpu_avg_samples = 1,
+
+-- number of net samples to average
+-- set to 1 to disable averaging
+	net_avg_samples = 1,
+
+-- Window specifications #
+	own_window = true,
+        own_window_type = 'desktop',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	own_window_title = '',
+	own_window_transparent=false,
+	own_window_argb_visual = true,
+	own_window_argb_value = 180,
+
+-- size of text area	
+	minimum_width = 240, minimum_height = 1385,
+
+-- Alignment #
+	alignment = 'top_right',
+	gap_x = 10,
+	gap_y = 45,
+
+	border_inner_margin = 0,
+	border_outer_margin = 0,
+
+-- Graphics settings #
+	draw_shades = false,
+	draw_outline = true,
+	draw_borders = false,
+	draw_graph_borders = true,
+
+-- Text settings #
+	use_xft = true,
+	font = 'RocketScript:size=8',
+	xftalpha = 0.5,
+
+	override_utf8_locale = true,
+
+	imlib_cache_size = 0,
+
+-- Misc Console #
+        out_to_console = false,
+        out_to_stderr = false,
+        extra_newline = false,
+
+-- Color scheme #
+	default_color = 'white',
+	color1 = 'green',
+	color5 = 'black',
+	color3 = 'red',
+	color4 = '#299DFD',
+	color5 = 'gray',
+
+};
+
+TEXT
+${goto 90}${voffset 25}${font adele:bold:size=25} Today
+${goto 90}${voffset -}${font LG Weather_Z:size=100}${time %I:%M}${image blackline.png -p 354,23 -s 10x189}
+${offset 370}${voffset -183}${font ADELE:size=22}${time %A, %d %B}
+\
+# --- Weather --- #
+###################
+\
+# --- WOEID (Location id) --- #
+${execi 300 curl -s "http://weather.yahooapis.com/forecastrss?w=1103816&u=c" -o ~/.cache/weather.xml}\
+\
+# --- Temperature --- #
+#######################
+\
+${font ADELE :size=30}${offset 375}${voffset 10}${execi 300 grep "yweather:condition" ~/.cache/weather.xml | grep -o "temp=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}°${font ADELE :size=15}C${font ADELE :size=30}${voffset -20}  |
+\
+# --- Weather icon --- #
+########################
+\
+${execi 300 cp -f outline/$(grep "yweather:condition" ~/.cache/weather.xml | grep -o "code=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*").png ~/.cache/weather-1.png}${image ~/.cache/weather-1.png -p 420,6 -s 80x80}
+\
+# --- Textual condition (e.g. Partly cloudy) --- #
+##################################################
+\
+${font Roboto Light:size=18}${offset 462}${voffset -85}${execi 300 grep "yweather:condition" ~/.cache/weather.xml | grep -o "text=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}
+\
+# --- Icon - high temperature --- #
+###################################
+\
+${image outline/arrow-up.png -p 375,178 -s 12x12}
+\
+# --- High temperature --- #
+############################
+\
+${font Roboto Light :size=12}${offset 395}${voffset -25}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "high=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1'}°
+\
+# --- Icon - low temperature icon --- #
+#######################################
+\
+${image outline/arrow-down.png -p 422,178 -s 12x12}
+\
+# --- Low temperature --- #
+###########################
+\
+${font Roboto Light :size=12}${offset 438}${voffset -44}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "low=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1'}°
+\
+# --- Icon - map marker --- #
+#############################
+\
+${image outline/map-marker.png -p 453,169 -s 40x30}
+\
+# --- Location name (city and country) --- #
+############################################
+\
+${font Roboto Light :size=12}${offset 485}${voffset -45}${execi 300 grep "yweather:location" ~/.cache/weather.xml | grep -o "city=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}, ${execi 300 grep "yweather:location" ~/.cache/weather.xml | grep -o "country=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}
+
+${goto 285}${voffset -35}${font adele:bold:size=25}${time %p}
+
+
+
