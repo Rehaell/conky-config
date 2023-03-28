@@ -25,7 +25,7 @@ conky.config = {
 	own_window_argb_value = 180,
 
 -- size of text area	
-	minimum_width = 200, 
+	minimum_width = 220, 
 	minimum_height = 1350,
 
 	border_outer_margin = 0,
@@ -77,14 +77,14 @@ ${goto 15}Kernel:  ${color5}$kernel${color1}
 
 ${goto 15}${color5}${font RocketScript:size=10}${alignc}CPU LOAD${voffset -10}
 ${font}
-${goto 15}${color4}CPU 1${goto 70}${color}${cpu cpu1}% ${goto 120}${color4}CPU 9${goto 170}${color}${cpu cpu9}%
-${goto 15}${color4}CPU 2${goto 70}${color}${cpu cpu2}% ${goto 120}${color4}CPU 10${goto 170}${color}${cpu cpu10}%
-${goto 15}${color4}CPU 3${goto 70}${color}${cpu cpu3}% ${goto 120}${color4}CPU 11${goto 170}${color}${cpu cpu11}%
-${goto 15}${color4}CPU 4${goto 70}${color}${cpu cpu4}% ${goto 120}${color4}CPU 12${goto 170}${color}${cpu cpu12}%
-${goto 15}${color4}CPU 5${goto 70}${color}${cpu cpu5}% ${goto 120}${color4}CPU 13${goto 170}${color}${cpu cpu13}%
-${goto 15}${color4}CPU 6${goto 70}${color}${cpu cpu6}% ${goto 120}${color4}CPU 14${goto 170}${color}${cpu cpu14}%
-${goto 15}${color4}CPU 7${goto 70}${color}${cpu cpu7}% ${goto 120}${color4}CPU 15${goto 170}${color}${cpu cpu15}%
-${goto 15}${color4}CPU 8${goto 70}${color}${cpu cpu8}% ${goto 120}${color4}CPU 16${goto 170}${color}${cpu cpu16}%
+${goto 15}${color4}CPU 1${goto 70}${color}${cpu cpu1}%${goto 120}${color4}CPU 9${goto 170}${color}${cpu cpu9}%
+${goto 15}${color4}CPU 2${goto 70}${color}${cpu cpu2}%${goto 120}${color4}CPU 10${goto 170}${color}${cpu cpu10}%
+${goto 15}${color4}CPU 3${goto 70}${color}${cpu cpu3}%${goto 120}${color4}CPU 11${goto 170}${color}${cpu cpu11}%
+${goto 15}${color4}CPU 4${goto 70}${color}${cpu cpu4}%${goto 120}${color4}CPU 12${goto 170}${color}${cpu cpu12}%
+${goto 15}${color4}CPU 5${goto 70}${color}${cpu cpu5}%${goto 120}${color4}CPU 13${goto 170}${color}${cpu cpu13}%
+${goto 15}${color4}CPU 6${goto 70}${color}${cpu cpu6}%${goto 120}${color4}CPU 14${goto 170}${color}${cpu cpu14}%
+${goto 15}${color4}CPU 7${goto 70}${color}${cpu cpu7}%${goto 120}${color4}CPU 15${goto 170}${color}${cpu cpu15}%
+${goto 15}${color4}CPU 8${goto 70}${color}${cpu cpu8}%${goto 120}${color4}CPU 16${goto 170}${color}${cpu cpu16}%
 
 ${goto 15}${color4}Total${goto 70}${color}${cpu cpu0}%${goto 160}
 ${goto 90}${cpugraph 0 35,100 555555 AAAAAA -l}${voffset -30}
