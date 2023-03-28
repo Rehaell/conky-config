@@ -6,6 +6,7 @@ conky.config = {
 	update_interval = 1,
 	double_buffer = true,
 	no_buffers = true,
+	 
 
 -- number of cpu samples to average
 -- set to 1 to disable averaging
@@ -25,9 +26,10 @@ conky.config = {
 	own_window_argb_value = 180,
 
 -- size of text area	
-	minimum_width = 220, 
+	minimum_width = 210, 
 	minimum_height = 1350,
 
+	
 	border_outer_margin = 0,
 	border_inner_margin = 10,
 
@@ -38,7 +40,7 @@ conky.config = {
 
 -- Graphics settings #
 	draw_shades = false,
-	draw_outline = true,
+	draw_outline = false,
 	draw_borders = false,
 	draw_graph_borders = true,
 
@@ -70,12 +72,16 @@ conky.text = [[
 ${goto 15}${color5}${font RocketScript:size=10}${alignc}SYSTEM:${font}${color1}
 
 ${goto 15}${exec cat /etc/issue.net}
-${goto 15}Hostname: ${color5}${nodename}${color1}
-${goto 15}${exec cat /proc/cpuinfo|grep 'model name'|sed -e 's/model name.*: //'| uniq | cut -c 1-26}
-${goto 15}Kernel:  ${color5}$kernel${color1}
+${goto 15}${color1}Hostname: ${color5}${nodename}${color1}
+${goto 15}${color4}CPU: ${color5}${exec cat /proc/cpuinfo|grep 'model name'|sed -e 's/model name.*: //'| uniq | cut -c 1-26}
+${goto 15}${color4}RAM: ${color5}Corsair 32GB @ 3200Mhz
+${goto 15}${color4}GPU: ${color5}${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits}
+${goto 15}${color4}DISK 1: ${color5}Samsung NVME 970 EVO 500GB
+${goto 15}${color4}DISK 2: ${color5}Samsung SSD 860 QVO 2TB
+${goto 15}${color1}Kernel: ${color5}$kernel${color1}
 #${goto 15}Updates: ${color5} ${execi 360 aptitude search "~U" | wc -l | tail}
 
-${goto 15}${color5}${font RocketScript:size=10}${alignc}CPU LOAD${voffset -10}
+${goto 15}${color5}${font RocketScript:size=10}${alignc}CPU INFORMATION${voffset -10}
 ${font}
 ${goto 15}${color4}CPU 1${goto 70}${color}${cpu cpu1}%${goto 120}${color4}CPU 9${goto 170}${color}${cpu cpu9}%
 ${goto 15}${color4}CPU 2${goto 70}${color}${cpu cpu2}%${goto 120}${color4}CPU 10${goto 170}${color}${cpu cpu10}%
@@ -86,17 +92,14 @@ ${goto 15}${color4}CPU 6${goto 70}${color}${cpu cpu6}%${goto 120}${color4}CPU 14
 ${goto 15}${color4}CPU 7${goto 70}${color}${cpu cpu7}%${goto 120}${color4}CPU 15${goto 170}${color}${cpu cpu15}%
 ${goto 15}${color4}CPU 8${goto 70}${color}${cpu cpu8}%${goto 120}${color4}CPU 16${goto 170}${color}${cpu cpu16}%
 
-${goto 15}${color4}Total${goto 70}${color}${cpu cpu0}%${goto 160}
-${goto 90}${cpugraph 0 35,100 555555 AAAAAA -l}${voffset -30}
-
-${goto 15}${color5}${font RocketScript:size=10}${voffset 20}${alignc}CPU PROCESSES:${font}${color1}
+${goto 15}${color5}${font RocketScript:size=8}${alignc}PROCESSES:${font}${color1}
 ${goto 15}${color1}${top name 1}${goto 160}${color}${top cpu 1}%
 ${goto 15}${color1}${top name 2}${goto 160}${color}${top cpu 2}%
 ${goto 15}${color1}${top name 3}${goto 160}${color}${top cpu 3}%
 ${goto 15}${color1}${top name 4}${goto 160}${color}${top cpu 4}%
-${goto 15}${color1}${top name 5}${goto 160}${color}${top cpu 5}%${color5}
+${goto 15}${color1}${top name 5}${goto 160}${color}${top cpu 5}%
 
-${goto 15}${font RocketScript:size=10}${alignc}MEM PROCESSES:${font}${color1}
+${goto 15}${color5}${font RocketScript:size=10}${alignc}MEMORY INFORMATION:${font}${color1}
 ${goto 15}${voffset 5}${color1}${top_mem name 1}${goto 160}${color}${top mem 1}%
 ${goto 15}${color1}${top_mem name 2}${goto 160}${color}${top mem 2}%
 ${goto 15}${color1}${top_mem name 3}${goto 160}${color}${top mem 3}%
@@ -104,18 +107,18 @@ ${goto 15}${color1}${top_mem name 4}${goto 160}${color}${top mem 4}%
 ${goto 15}${color1}${top_mem name 5}${goto 160}${color}${top mem 5}%
 ${voffset 5}${goto 90}${color5}USED:${goto 160}TOTAL:${color1}${voffset 5}
 ${goto 15}${color4}RAM:${color}${goto 90}$memperc% ${goto 160}$memmax${color5}
-${goto 15}${color4}Swap:${color}${goto 90}${swap} ${goto 160}${swapmax}${color5}
+${goto 15}${color4}Swap:${color}${goto 90}${swap} ${goto 160}${swapmax}
 
-${goto 15}${font RocketScript:size=10}${alignc}${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits}${font}${color1}${voffset 5}
+${goto 15}${color5}${font RocketScript:size=10}${alignc}GPU INFORMATION:${font}${color1}${voffset 5}
 ${goto 15}${color4}GPU Temperature: ${goto 160}${color}${nvidia temp} °C${color5}
 ${goto 15}${color4}GPU Usage: ${goto 160}${color}${execi 5 nvidia-settings -tq GPUUtilization | grep -o 'graphics=[0-9]*' | sed -e 's/graphics=//'}%${color5}
 ${goto 15}${color4}GPU Frequency: ${goto 160}${color}${nvidia gpufreq}MHz${color5}
-${goto 15}${font RocketScript:size=10}${alignc}MEMORY:${font}${color1}
+${goto 15}${font RocketScript:size=8}${alignc}MEMORY:${font}${color1}
 ${goto 15}${color4}MEM Frequency: ${goto 160}${color}${nvidia memfreq}MHz${color5}
 ${voffset 5}${goto 88}${color5}USED:${goto 158}TOTAL:${color1}${voffset 5}
-${goto 15}${color4}RAM:   ${color}${execi 5 nvidia-settings -t -q [gpu:0]/UsedDedicatedGPUMemory} MB${color4}${goto 125}AVAIL: ${color}${execi 5 nvidia-settings -t -q [gpu:0]/TotalDedicatedGPUMemory} MB${color5}
+${goto 15}${color4}RAM:   ${color}${execi 5 nvidia-settings -t -q [gpu:0]/UsedDedicatedGPUMemory} MB${color4}${goto 125}AVAIL: ${color}${execi 5 nvidia-settings -t -q [gpu:0]/TotalDedicatedGPUMemory} MB
 
-${goto 15}${font RocketScript:size=10}${alignc}DISKS:${font}${voffset 5}
+${goto 15}${color5}${font RocketScript:size=10}${alignc}DISK INFORMATION:${font}${voffset 5}
 ${goto 88}FREE:${goto 158}TOTAL:${color}${font}
 ${goto 15}${color1}Root${color}${goto 90}${fs_free /}${goto 160}${fs_size /}
 ${goto 15}${color1}Home${color}${goto 90}${fs_free /home}${goto 160}${fs_size /home}
@@ -126,7 +129,7 @@ ${goto 15}${color1}Home${color}${goto 90}${diskio_read /dev/sdb1}${goto 160}${di
 ${goto 15}${color1}Jogos${color}${goto 90}${diskio_read /dev/sdc1}${goto 160}${diskio_write /dev/sdc1}
 
 
-${goto 15}${font RocketScript:size=10}${alignc}${color5}NETWORK:${font}${color}${voffset 5}
+${goto 15}${font RocketScript:size=10}${alignc}${color5}NETWORK INFORMATION:${font}${color}${voffset 5}
 ${goto 15}${color1}Down${color}${goto 90}${downspeed enp5s0} ${goto 140} /  ${totaldown enp5s0}
 ${offset 50}${color1}${downspeedgraph enp5s0 15,120 324D23 77B753 100 -l}
 ${goto 15}${color3}${voffset 5}UP${color}${goto 90}${upspeed enp5s0} ${goto 140} /  ${totalup enp5s0}
@@ -145,5 +148,9 @@ ${goto 42}${tcp_portmon 1 65535 rip  2}
 ${goto 42}${tcp_portmon 1 65535 rip  3}
 ${goto 42}${tcp_portmon 1 65535 rip  4}
 ${goto 42}${tcp_portmon 1 65535 rip  5}
+${goto 42}${tcp_portmon 1 65535 rip  6}
+${goto 42}${tcp_portmon 1 65535 rip  7}
+${goto 42}${tcp_portmon 1 65535 rip  8}
+${goto 42}${tcp_portmon 1 65535 rip  9}
 
 ]];
