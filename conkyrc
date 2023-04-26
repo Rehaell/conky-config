@@ -6,7 +6,6 @@ conky.config = {
 	update_interval = 1,
 	double_buffer = true,
 	no_buffers = true,
-	 
 
 -- number of cpu samples to average
 -- set to 1 to disable averaging
@@ -28,8 +27,6 @@ conky.config = {
 -- size of text area	
 	minimum_width = 210, 
 	minimum_height = 1350,
-
-	
 	border_outer_margin = 0,
 	border_inner_margin = 10,
 
@@ -52,6 +49,8 @@ conky.config = {
 	override_utf8_locale = true,
 
 	imlib_cache_size = 0,
+
+	 xinerama_head = 0,
 
 -- Misc Console #
     out_to_console = false,
