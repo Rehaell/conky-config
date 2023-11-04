@@ -26,7 +26,7 @@ conky.config = {
 
 -- size of text area	
 	minimum_width = 210, 
-	minimum_height = 1350,
+	minimum_height = 1110,
 	border_outer_margin = 0,
 	border_inner_margin = 10,
 
