@@ -93,6 +93,9 @@ ${goto 15}${color1}${top name 2}${goto 160}${color}${top cpu 2}%
 ${goto 15}${color1}${top name 3}${goto 160}${color}${top cpu 3}%
 ${goto 15}${color1}${top name 4}${goto 160}${color}${top cpu 4}%
 ${goto 15}${color1}${top name 5}${goto 160}${color}${top cpu 5}%
+${goto 15}${color1}${top name 6}${goto 160}${color}${top cpu 6}%
+${goto 15}${color1}${top name 7}${goto 160}${color}${top cpu 7}%
+${goto 15}${color1}${top name 8}${goto 160}${color}${top cpu 8}%
 
 ${goto 15}${color5}${font RocketScript:size=10}${alignc}MEMORY INFORMATION:${font}${color1}
 ${goto 15}${voffset 5}${color1}${top_mem name 1}${goto 160}${color}${top mem 1}%
@@ -100,6 +103,9 @@ ${goto 15}${color1}${top_mem name 2}${goto 160}${color}${top mem 2}%
 ${goto 15}${color1}${top_mem name 3}${goto 160}${color}${top mem 3}%
 ${goto 15}${color1}${top_mem name 4}${goto 160}${color}${top mem 4}%
 ${goto 15}${color1}${top_mem name 5}${goto 160}${color}${top mem 5}%
+${goto 15}${color1}${top_mem name 6}${goto 160}${color}${top mem 6}%
+${goto 15}${color1}${top_mem name 7}${goto 160}${color}${top mem 7}%
+${goto 15}${color1}${top_mem name 8}${goto 160}${color}${top mem 8}%
 ${voffset 5}${goto 90}${color5}USED:${goto 160}TOTAL:${color1}${voffset 5}
 ${goto 15}${color4}RAM:${color}${goto 90}$memperc% ${goto 160}$memmax${color5}
 ${goto 15}${color4}Swap:${color}${goto 90}${swap} ${goto 160}${swapmax}
@@ -116,22 +122,19 @@ ${goto 15}${color5}${font RocketScript:size=10}${alignc}GPU INFORMATION:${font}$
 ${goto 15}${color5}${font RocketScript:size=10}${alignc}DISK INFORMATION:${font}${voffset 5}
 ${goto 88}FREE:${goto 158}TOTAL:${color}${font}
 ${goto 15}${color1}Root${color}${goto 90}${fs_free /}${goto 160}${fs_size /}
-${goto 15}${color1}Home${color}${goto 90}${fs_free /home}${goto 160}${fs_size /home}
 
 ${goto 88}${color5}READ:${goto 158}WRITE:${color}
-${goto 15}${color1}Root${color}${goto 90}${diskio_read /dev/nvme1n1p2}${goto 160}${diskio_write /dev/nvme1n1p2}
-${goto 15}${color1}Home${color}${goto 90}${diskio_read /dev/sdb1}${goto 160}${diskio_write /dev/sdb1}
-${goto 15}${color1}Jogos${color}${goto 90}${diskio_read /dev/sdc1}${goto 160}${diskio_write /dev/sdc1}
+${goto 15}${color1}Root${color}${goto 90}${diskio_read /dev/nvme0n1p2}${goto 160}${diskio_write /dev/nvme0n1p2}
 
 
 ${goto 15}${font RocketScript:size=10}${alignc}${color5}NETWORK INFORMATION:${font}${color}${voffset 5}
-${goto 15}${color1}Down${color}${goto 90}${downspeed enp5s0} ${goto 140} /  ${totaldown enp5s0}
-${offset 50}${color1}${downspeedgraph enp5s0 15,120 324D23 77B753 100 -l}
-${goto 15}${color3}${voffset 5}UP${color}${goto 90}${upspeed enp5s0} ${goto 140} /  ${totalup enp5s0}
-${offset 50}${color3}${upspeedgraph enp5s0 15,120 4B1B0C FF5C2B 100 -l}
+${goto 15}${color1}Down${color}${goto 90}${downspeed wlp1s0} ${goto 140} /  ${totaldown wlp1s0}
+${offset 50}${color1}${downspeedgraph wlp1s0 15,120 324D23 77B753 100 -l}
+${goto 15}${color3}${voffset 5}UP${color}${goto 90}${upspeed wlp1s0} ${goto 140} /  ${totalup wlp1s0}
+${offset 50}${color3}${upspeedgraph wlp1s0 15,120 4B1B0C FF5C2B 100 -l}
 
 ${goto 15}${color5}WAN:${color}${goto 90}${execi 60 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}${color5}
-${goto 15}LAN :${color}${goto 90}${addr enp5s0}${color5}
+${goto 15}WLAN :${color}${goto 90}${addr wlp1s0}${color5}
 
 ${goto 15}${voffset 5}${font RocketScript:size=10}${alignc}OPEN PORTS:${font}${color}${voffset 5}
 ${goto 15}${color1}Inbound Ports:${color}${goto 130}${tcp_portmon 1 32767 count}
