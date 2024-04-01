@@ -74,11 +74,10 @@ ${goto 15}${exec cat /etc/issue.net}
 ${goto 15}${color1}Hostname: ${color5}${nodename}${color1}
 ${goto 15}${color4}CPU: ${color5}${exec cat /proc/cpuinfo|grep 'model name'|sed -e 's/model name.*: //'| uniq | cut -c 1-26}
 #${goto 15}${color4}RAM: ${color5}Corsair 32GB @ 3200Mhz
-#${goto 15}${color4}GPU: ${color5}${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits}
-${goto 15}${color4}DISK 1: ${color5}Samsung NVME 970 EVO 500GB
-#${goto 15}${color4}DISK 2: ${color5}Samsung SSD 860 QVO 2TB
+${goto 15}${color4}iGPU: ${color5}Intel${exec exec lspci | grep VGA | cut -c 53-69}
+${goto 15}${color4}DISK 1: ${color5}Generic NVME 256GB
 ${goto 15}${color1}Kernel: ${color5}$kernel${color1}
-#${goto 15}Updates: ${color5} ${execi 360 aptitude search "~U" | wc -l | tail}
+${goto 15}Updates: ${color5} ${execi 360 aptitude search "~U" | wc -l | tail}
 
 ${goto 15}${color5}${font RocketScript:size=10}${alignc}CPU INFORMATION${voffset -10}
 ${font}
